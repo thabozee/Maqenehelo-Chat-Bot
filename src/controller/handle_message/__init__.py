@@ -83,6 +83,9 @@ def verify(request):
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
+    print(mode)
+    print(token)
+    print(challenge)
     # Check if a token and mode were sent
     if mode and token:
         # Check the mode and token sent are correct
