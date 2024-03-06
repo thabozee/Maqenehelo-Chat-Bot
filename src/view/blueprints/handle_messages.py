@@ -4,7 +4,7 @@ from src.controller.handle_message import verify
 handle_messages_bp = Blueprint(name="handle_messages_bp", import_name=__name__, url_prefix="/handle_messages/webhook")
 
 
-@handle_messages_bp.route("/", methods=["POST"])
+@handle_messages_bp.route("/", methods=["POST","GET"])
 def handle_message_fn():
     if request.method == "GET":
         return verify(request)
