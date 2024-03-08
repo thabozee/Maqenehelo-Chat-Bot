@@ -62,6 +62,7 @@ def handle_message(request):
                     and body["entry"][0]["changes"][0]["value"].get("messages")
                     and body["entry"][0]["changes"][0]["value"]["messages"][0]
             ):
+                send_whatsapp_message(body, "intitial_contact")
                 handle_whatsapp_message(body)
             return jsonify({"status": "ok"}), 200
         else:

@@ -1,6 +1,7 @@
 from flask import Blueprint, make_response, json, request
 from src.controller.handle_message import handle_message
 from src.controller.handle_message import verify
+from src.controller.handle_message import send_whatsapp_message
 
 handle_messages_bp = Blueprint(name="handle_messages_bp", import_name=__name__, url_prefix="/handle_messages/webhook")
 
