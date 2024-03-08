@@ -15,7 +15,7 @@ def get_media_url(media_id):
 
 
 # send the response as a WhatsApp message back to the user
-def send_whatsapp_message(body, message):
+def send_whatsapp_message(body, t_message):
     value = body["entry"][0]["changes"][0]["value"]
     phone_number_id = value["metadata"]["phone_number_id"]
     from_number = value["messages"][0]["from"]
@@ -27,8 +27,8 @@ def send_whatsapp_message(body, message):
     data = {
         "messaging_product": "whatsapp",
         "to": from_number,
-        "type": "text",
-        "text": {"body": message},
+        "type": "template",
+        "template": {"name": t_message, "language": {"code": "en_US"}},
     }
     response = requests.post(url, json=data, headers=headers)
     print(f"whatsapp message response: {response.json()}")
@@ -40,6 +40,7 @@ def handle_whatsapp_message(body):
     message = body["entry"][0]["changes"][0]["value"]["messages"][0]
     if message["type"] == "text":
         message_body = message["text"]["body"]
+
     elif message["type"] == "audio":
         pass
 
@@ -101,3 +102,12 @@ def verify(request):
         # Responds with '400 Bad Request' if verify tokens do not match
         print("MISSING_PARAMETER")
         return jsonify({"status": "error", "message": "Missing parameters"}), 400
+
+
+def get_message_data(message_template):
+    if message_template == "intitial_contact":
+        pass
+    elif message_template == "items_to_upload":
+        pass
+    elif message_template == "item_upload_acknowledgement":
+        pass
