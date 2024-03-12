@@ -1,6 +1,7 @@
 from flask import jsonify
 import requests
 import config as env
+from src.controller.handle_message import menu_navigation
 
 
 # get the media url from the media id
@@ -40,7 +41,9 @@ def handle_whatsapp_message(body):
     message = body["entry"][0]["changes"][0]["value"]["messages"][0]
     if message["type"] == "text":
         message_body = message["text"]["body"]
-        print(f"message from sub/customer {message_body}")
+        session = message["from"]
+        menu_navigation.navigation(session,message_body)
+
 
     elif message["type"] == "audio":
         pass

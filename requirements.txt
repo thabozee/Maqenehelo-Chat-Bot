@@ -1,5 +1,6 @@
-flask
-python-dotenv
+flask~=3.0.2
+python-dotenv~=1.0.1
 gunicorn
 Flask-Cors
-requests
+requests~=2.31.0
+redis~=5.0.3
