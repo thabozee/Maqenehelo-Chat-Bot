@@ -7,6 +7,7 @@ class ChatbotRedisHandler:
 
     def set_user_state(self, user_id, state):
         self.redis_wrapper.set(f"user:{user_id}:state", state)
+        print(f"user:{user_id}:state")
 
     def get_user_state(self, user_id):
         return self.redis_wrapper.get(f"user:{user_id}:state")
